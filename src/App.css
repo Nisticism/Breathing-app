@@ -24,7 +24,7 @@
 }
 
 .menu-icon-container:hover {
-  background: green;
+  background: var(--selected-green);
   cursor: pointer;
 }
 
@@ -82,4 +82,14 @@
   flex-direction: column;
   min-width: 100px;
   width: 100%;
+}
+
+.title-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
 }

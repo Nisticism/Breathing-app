@@ -1,0 +1,54 @@
+.breath {
+  margin-left: max(10%, 100px);
+  padding-left: 40px;
+  justify-content: center;
+}
+
+.counters {
+  background-color: var(--header-green);
+  border-radius: 15px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  width: max(20%, 200px);
+  height: 200px;
+  padding: 20px;
+  margin: auto;
+}
+
+.counters-options {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.float-left {
+  text-align: start;
+}
+
+.float-right {
+  text-align: end;
+}
+
+.counters-input {
+  width: 45px;
+}
+
+tr {
+  height: 45px;
+}
+
+.start-button {
+  background-color: var(--selected-green);
+  padding: 10px;
+  width: 250px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 18px;
+}
+
+.start-button:hover {
+  cursor: pointer;
+  background-color: var(--selected-green-hover);
+}
