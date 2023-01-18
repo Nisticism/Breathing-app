@@ -40,7 +40,7 @@ tr {
 .start-button {
   background-color: var(--selected-green);
   padding: 10px;
-  width: 250px;
+  width: 240px;
   margin-top: 20px;
   border: none;
   border-radius: 5px;
