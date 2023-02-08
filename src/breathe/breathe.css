@@ -52,3 +52,18 @@ tr {
   cursor: pointer;
   background-color: var(--selected-green-hover);
 }
+
+.action-text {
+  height: 40px;
+  width: 100%;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.timer-text {
+  height: 40px;
+  width: 100%;
+  min-width: 300px;
+  margin-top: 20px;
+  text-align: center;
+}
