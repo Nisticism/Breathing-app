@@ -50,7 +50,6 @@ function Breath() {
         if (inhale > 0 && timerCount === 0) {
           setInhale(inhale - 1);
           setTimerText(inhale - 1);
-          setActionText("Inhaling");
         //  Inhale reaches 0
         } else if (inhale === 0 && timerCount === 0) {
           setInhale(inhaleSetting);
@@ -82,6 +81,7 @@ function Breath() {
         } else if (sustainOut === 0 && timerCount === 3) {
           setSustainOut(sustainOutSetting);
           setTimerText(inhaleSetting);
+          setActionText("Inhaling");
           setTimerCount(0);
         }
       }

@@ -63,7 +63,6 @@ tr {
 .timer-text {
   height: 40px;
   width: 100%;
-  min-width: 300px;
   margin-top: 20px;
   text-align: center;
 }
