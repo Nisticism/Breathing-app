@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Breathing-app/static/css/main.e7f51196.css",
-    "main.js": "/Breathing-app/static/js/main.5471f8c5.js",
+    "main.css": "/Breathing-app/static/css/main.8dd8e540.css",
+    "main.js": "/Breathing-app/static/js/main.fafa8581.js",
     "static/js/787.9a7a5a2b.chunk.js": "/Breathing-app/static/js/787.9a7a5a2b.chunk.js",
     "index.html": "/Breathing-app/index.html",
-    "main.e7f51196.css.map": "/Breathing-app/static/css/main.e7f51196.css.map",
-    "main.5471f8c5.js.map": "/Breathing-app/static/js/main.5471f8c5.js.map",
+    "main.8dd8e540.css.map": "/Breathing-app/static/css/main.8dd8e540.css.map",
+    "main.fafa8581.js.map": "/Breathing-app/static/js/main.fafa8581.js.map",
     "787.9a7a5a2b.chunk.js.map": "/Breathing-app/static/js/787.9a7a5a2b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e7f51196.css",
-    "static/js/main.5471f8c5.js"
+    "static/css/main.8dd8e540.css",
+    "static/js/main.fafa8581.js"
   ]
 }
