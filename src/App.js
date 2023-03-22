@@ -2,10 +2,11 @@ import './app.css';
 import { default as Breath } from './breathe/Breathe';
 import { FiMenu } from 'react-icons/fi';
 import React, { useState } from 'react';
+import Logo from './assets/icon.svg';
 
 function App() {
 
-  const [menu, setMenu] = useState(true);
+  const [menu, setMenu] = useState(false);
 
   return (
     <div className="App">
@@ -14,7 +15,8 @@ function App() {
           <FiMenu className="menu-icon"/>
         </div>
         <div className="app-title-container">
-          <h2 className="app-title">Breathing App</h2>
+          <h2 className="app-title">Unplugg</h2>
+          <img src={Logo} alt="logo" className="header-icon" />
         </div>
       </div>
       <div className="menu" style={menu ? {display: "block"} : {display: "none"}}>

@@ -1,6 +1,7 @@
 body {
+  background: var(--dark-mode-main);
   margin: 0;
-  font-family: 'Roboto', 'Segoe UI', 'Oxygen',
+  font-family: 'Poppins', 'Roboto', 'Segoe UI', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -19,4 +20,12 @@ code {
   --item-background: #1C1B1F;
   --selected-green: #3DA35D;
   --selected-green-hover: #2db959;
+  
+  --dark-mode-main: #002021;
+  --dark-mode-buttons-header: #004F52;
+  --dark-mode-button-shadow: #00696D;
+  --dark-mode-accent: #4CD9DF;
+  --dark-mode-text: #BAFCFF;
+  --dark-mode-white: #F1FFFF;
+
 }
