@@ -1,15 +1,17 @@
 {
   "files": {
-    "main.css": "/Breathing-app/static/css/main.8dd8e540.css",
-    "main.js": "/Breathing-app/static/js/main.fafa8581.js",
+    "main.css": "/Breathing-app/static/css/main.25fb36c0.css",
+    "main.js": "/Breathing-app/static/js/main.7fee1748.js",
     "static/js/787.9a7a5a2b.chunk.js": "/Breathing-app/static/js/787.9a7a5a2b.chunk.js",
+    "static/media/big_icon.svg": "/Breathing-app/static/media/big_icon.c2e5e445f3d79e1cc9f335b16cdd7721.svg",
+    "static/media/icon.svg": "/Breathing-app/static/media/icon.6574e396c62ed7fc9f900dc01e33d372.svg",
     "index.html": "/Breathing-app/index.html",
-    "main.8dd8e540.css.map": "/Breathing-app/static/css/main.8dd8e540.css.map",
-    "main.fafa8581.js.map": "/Breathing-app/static/js/main.fafa8581.js.map",
+    "main.25fb36c0.css.map": "/Breathing-app/static/css/main.25fb36c0.css.map",
+    "main.7fee1748.js.map": "/Breathing-app/static/js/main.7fee1748.js.map",
     "787.9a7a5a2b.chunk.js.map": "/Breathing-app/static/js/787.9a7a5a2b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.8dd8e540.css",
-    "static/js/main.fafa8581.js"
+    "static/css/main.25fb36c0.css",
+    "static/js/main.7fee1748.js"
   ]
 }
