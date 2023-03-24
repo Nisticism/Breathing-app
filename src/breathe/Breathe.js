@@ -178,6 +178,15 @@ function Breath() {
     console.log("breathingLoop: " + breathingLoop);
   }
 
+  function pressCenter() {
+    if (!breathingLoop) {
+    setInhaleSetting(4);
+    setSustainInSetting(0);
+    setExhaleSetting(4);
+    setSustainOutSetting(0);
+    }
+  }
+
   function pressCalm() {
     if (!breathingLoop) {
       setInhaleSetting(4);
@@ -196,7 +205,7 @@ function Breath() {
     }
   }
 
-  function pressFocus() {
+  function press478Breathing() {
     if (!breathingLoop) {
       setInhaleSetting(4);
       setSustainInSetting(7);
@@ -205,31 +214,36 @@ function Breath() {
     }
   }
 
-  function pressCenter() {
-    if (!breathingLoop) {
-    setInhaleSetting(4);
-    setSustainInSetting(0);
-    setExhaleSetting(4);
-    setSustainOutSetting(0);
-    }
-  }
-
   function pressPranayama1() {
     if (!breathingLoop) {
-      setInhaleSetting(4);
+      setInhaleSetting(2);
       setSustainInSetting(0);
-      setExhaleSetting(6);
+      setExhaleSetting(4);
       setSustainOutSetting(0);
     }
   }
 
   function pressPranayama2() {
     if (!breathingLoop) {
-      setInhaleSetting(4);
-      setSustainInSetting(0);
-      setExhaleSetting(6);
+      setInhaleSetting(2);
+      setSustainInSetting(4);
+      setExhaleSetting(4);
       setSustainOutSetting(0);
     }
+  }
+
+  function pressPranayama3() {
+    if (!breathingLoop) {
+      setInhaleSetting(2);
+      setSustainInSetting(6);
+      setExhaleSetting(4);
+      setSustainOutSetting(2);
+    }
+  }
+
+  function pressWimHof() {
+    window.open(
+      "https://www.youtube.com/watch?v=tybOi4hjZFQ", "_blank");
   }
 
   const pieDataInitial = {
@@ -251,6 +265,14 @@ function Breath() {
       hoverOffset: 2
     }]
   };
+
+  function getInhalePieSetting() {
+    if (breathingLoop) {
+      return (inhaleSetting - inhale + 1);
+    } else {
+      return (inhaleSetting - inhale);
+    }
+  }
 
   let pieData = {
     labels: [
@@ -371,25 +393,33 @@ function Breath() {
           <h1 className="presets-text">Presets</h1>
           <div className="presets-buttons">
             <div className="buttons-row">
-              <button className="button preset-button" onClick={pressCalm}>
-                CALM
+              <button className="button preset-button" onClick={pressCenter}>
+                CENTER
               </button>
               <button className="button preset-button" onClick={pressBox}>
                 BOX
               </button>
-              <button className="button preset-button" onClick={pressFocus}>
-                FOCUS
+              <button className="button preset-button" onClick={pressCalm}>
+                CALM
               </button>
             </div>
             <div className="buttons-row">
-              <button className="button preset-button" onClick={pressCenter}>
-                CENTER
+              <button className="button preset-button" onClick={press478Breathing}>
+                478 BREATHING
               </button>
               <button className="button preset-button" onClick={pressPranayama1}>
-                PRANAYAMA 2
+                PRANAYAMA 1
               </button>
               <button className="button preset-button" onClick={pressPranayama2}>
+                PRANAYAMA 2
+              </button>
+            </div>
+            <div className="buttons-row">
+              <button className="button preset-button" onClick={pressPranayama3}>
                 PRANAYAMA 3
+              </button>
+              <button className="button preset-button" onClick={pressWimHof}>
+                WIM HOF
               </button>
             </div>
           </div>
