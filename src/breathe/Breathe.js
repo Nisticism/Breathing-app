@@ -11,16 +11,15 @@ function Breath() {
 
   const [timerText, setTimerText] = useState(null);
 
-
-  const [inhale, setInhale] = useState(0);
-  const [sustainIn, setSustainIn] = useState(0);
-  const [exhale, setExhale] = useState(0);
-  const [sustainOut, setSustainOut] = useState(0);
-
   const [inhaleSetting, setInhaleSetting] = useState(1);
   const [sustainInSetting, setSustainInSetting] = useState(0);
   const [exhaleSetting, setExhaleSetting] = useState(1);
   const [sustainOutSetting, setSustainOutSetting] = useState(0);
+
+  const [inhale, setInhale] = useState(inhaleSetting);
+  const [sustainIn, setSustainIn] = useState(sustainInSetting);
+  const [exhale, setExhale] = useState(exhaleSetting);
+  const [sustainOut, setSustainOut] = useState(sustainOutSetting);
 
   const [buttonText, setButtonText] = useState("BREATHE");
   const [breathingLoop, setBreathingLoop] = useState(false);
@@ -59,7 +58,6 @@ function Breath() {
           setTimerText(inhale - 1);
           console.log(actionText);
           if (inhale === 1) {
-            setInhale(inhaleSetting)
             if (sustainInSetting > 0) {
               setActionText("Sustaining");
               setTimerText(sustainInSetting);
@@ -78,7 +76,6 @@ function Breath() {
           setTimerText(sustainIn - 1);
           console.log(actionText);
           if (sustainIn === 1) {
-            setSustainIn(sustainInSetting)
             setTimerText(exhaleSetting);
             setActionText("Exhaling");
             setTimerCount(timerCount + 1);
@@ -91,7 +88,6 @@ function Breath() {
           setTimerText(exhale - 1);
           console.log(actionText);
           if (exhale === 1) {
-            setExhale(exhaleSetting)
             if (sustainOutSetting > 0) {
               setActionText("Sustaining");
               setTimerCount(timerCount + 1);
@@ -100,6 +96,10 @@ function Breath() {
               setActionText("Inhaling");
               setTimerCount(0);
               setTimerText(inhaleSetting);
+              setInhale(inhaleSetting);
+              setSustainIn(sustainInSetting);
+              setExhale(exhaleSetting);
+              setSustainOut(sustainOutSetting);
             }
           }
         } 
@@ -109,12 +109,15 @@ function Breath() {
           setTimerText(sustainOut - 1);
           console.log(actionText);
           if (sustainOut === 1) {
-            setSustainOut(sustainOutSetting)
             setTimerText(inhaleSetting);
             setActionText("Inhaling");
             setTimerCount(0);
+            setInhale(inhaleSetting);
+            setSustainIn(sustainInSetting);
+            setExhale(exhaleSetting);
+            setSustainOut(sustainOutSetting);
           }
-        } 
+        }
       }
     }, 1000);
     return () => clearInterval(timerRef.current);
@@ -176,48 +179,60 @@ function Breath() {
   }
 
   function pressCalm() {
-    setInhaleSetting(4);
-    setSustainInSetting(0);
-    setExhaleSetting(6);
-    setSustainOutSetting(0);
+    if (!breathingLoop) {
+      setInhaleSetting(4);
+      setSustainInSetting(0);
+      setExhaleSetting(6);
+      setSustainOutSetting(0);
+    }
   }
   
   function pressBox() {
-    setInhaleSetting(4);
-    setSustainInSetting(4);
-    setExhaleSetting(4);
-    setSustainOutSetting(4);
+    if (!breathingLoop) {
+      setInhaleSetting(4);
+      setSustainInSetting(4);
+      setExhaleSetting(4);
+      setSustainOutSetting(4);
+    }
   }
 
   function pressFocus() {
-    setInhaleSetting(4);
-    setSustainInSetting(7);
-    setExhaleSetting(8);
-    setSustainOutSetting(0);
+    if (!breathingLoop) {
+      setInhaleSetting(4);
+      setSustainInSetting(7);
+      setExhaleSetting(8);
+      setSustainOutSetting(0);
+    }
   }
 
   function pressCenter() {
+    if (!breathingLoop) {
     setInhaleSetting(4);
     setSustainInSetting(0);
     setExhaleSetting(4);
     setSustainOutSetting(0);
+    }
   }
 
   function pressPranayama1() {
-    setInhaleSetting(4);
-    setSustainInSetting(0);
-    setExhaleSetting(6);
-    setSustainOutSetting(0);
+    if (!breathingLoop) {
+      setInhaleSetting(4);
+      setSustainInSetting(0);
+      setExhaleSetting(6);
+      setSustainOutSetting(0);
+    }
   }
 
   function pressPranayama2() {
-    setInhaleSetting(4);
-    setSustainInSetting(0);
-    setExhaleSetting(6);
-    setSustainOutSetting(0);
+    if (!breathingLoop) {
+      setInhaleSetting(4);
+      setSustainInSetting(0);
+      setExhaleSetting(6);
+      setSustainOutSetting(0);
+    }
   }
 
-  const pieData = {
+  const pieDataInitial = {
     labels: [
       'Inhale',
       'Retain',
@@ -231,18 +246,71 @@ function Breath() {
         '#1DBDC3',
         '#00A1A5',
         '#008488',
-        '#00696D'
+        '#00696D',
       ],
-      hoverOffset: 4,
-      legend: "none"
+      hoverOffset: 2
     }]
   };
+
+  let pieData = {
+    labels: [
+      'Inhale',
+      'Retain',
+      'Exhale',
+      'Sustain'
+    ],
+    datasets: [{
+      label: 'Breathe Settings',
+      data:
+      [(inhaleSetting - inhale), inhale, 
+        (sustainInSetting - sustainIn), sustainIn, 
+        (exhaleSetting - exhale), exhale, 
+        (sustainOutSetting - sustainOut), sustainOut],
+      backgroundColor: [
+        '#FFFFFF',
+        '#1DBDC3',
+        '#FFFFFF',
+        '#00A1A5',
+        '#FFFFFF',
+        '#008488',
+        '#FFFFFF',
+        '#00696D',
+      ],
+      hoverOffset: 2
+    }]
+  };
+
+  function setPieData() {
+    this.pieData.datasets = 
+    [{
+      label: 'Breathe Settings',
+      data:
+        [inhale, (inhaleSetting - inhale), 
+        sustainIn, (sustainInSetting - sustainIn), 
+        exhale, (exhaleSetting - exhale), 
+        sustainOut, (sustainOutSetting - sustainOut)],
+      backgroundColor: [
+        '#1DBDC3',
+        '#FFFFFF',
+        '#00A1A5',
+        '#FFFFFF',
+        '#008488',
+        '#FFFFFF',
+        '#00696D',
+        '#FFFFFF',
+      ],
+      hoverOffset: 2
+    }]
+  }
 
   const pieOptions = {
     plugins: {
       legend: {
         display: false
       }
+    },
+    animation: {
+      duration: 1000
     }
   }
 
