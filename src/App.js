@@ -6,50 +6,60 @@ import Logo from './assets/icon.svg';
 
 function App() {
 
-  const [menu, setMenu] = useState(false);
+  const [menu, setMenu] = useState(true);
 
   return (
     <div className="App">
       <div className="header">
-        <div className="menu-icon-container" onClick={() => menu ? setMenu(false) : setMenu(true)}>
-          <FiMenu className="menu-icon"/>
+        <div className="left-info">
+          <div className="menu-icon-container" onClick={() => menu ? setMenu(false) : setMenu(true)}>
+            <FiMenu className="menu-icon"/>
+          </div>
+          <div className="app-title-container">
+            <h2 className="app-title">Unplugg</h2>
+            <img src={Logo} alt="logo" className="header-icon" />
+          </div>
         </div>
-        <div className="app-title-container">
-          <h2 className="app-title">Unplugg</h2>
-          <img src={Logo} alt="logo" className="header-icon" />
+        <div className="right-info">
+          <button className="button login-button">
+            Login
+          </button>
+          <button className="button register-button">
+            Register
+          </button>
         </div>
       </div>
-      <div className="menu" style={menu ? {display: "block"} : {display: "none"}}>
+      <div className="menu" style={menu ? {width: "0px", border: "none"} : {width: "125px"}}>
         <div className="menu-item-container">
-          <div className="menu-item">
-            Techniques
+          <div className="menu-item" style={menu ? {visibility: "hidden"} : {visibility: "visible", transitionDelay: "0.6s", transitionProperty: "visibility"}}>
+            Saved Routines
           </div>
         </div>
         <div className="menu-item-container">
-          <div className="menu-item">
+          <div className="menu-item" style={menu ? {visibility: "hidden"} : {visibility: "visible", transitionDelay: "0.6s", transitionProperty: "visibility"}}>
+            History
+          </div>
+        </div>
+        <div className="menu-item-container">
+          <div className="menu-item" style={menu ? {visibility: "hidden"} : {visibility: "visible", transitionDelay: "0.6s", transitionProperty: "visibility"}}>
             Resources
           </div>
         </div>
         <div className="menu-item-container">
-          <div className="menu-item">
-            Presets
-          </div>
-        </div>
-        <div className="menu-item-container">
-          <div className="menu-item">
-            Learn
+          <div className="menu-item" style={menu ? {visibility: "hidden"} : {visibility: "visible", transitionDelay: "0.6s", transitionProperty: "visibility"}}>
+            Placeholder
           </div>
         </div>
         <div className="menu-footer">
           <div className="menu-footer-items">
             <div className="menu-item-container">
-              <div className="menu-item">
+              <div className="menu-item" style={menu ? {visibility: "hidden"} : {visibility: "visible", transitionDelay: "0.6s", transitionProperty: "visibility"}}>
                 About us
               </div>
             </div>
             <div className="menu-item-container">
-              <div className="menu-item">
-                Settings
+              <div className="menu-item" style={menu ? {visibility: "hidden"} : {visibility: "visible", transitionDelay: "0.6s", transitionProperty: "visibility"}}>
+                Login/logout
               </div>
             </div>
           </div>

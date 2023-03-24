@@ -13,7 +13,7 @@
   width: max(20%, 220px);
   height: 200px;
   padding: 20px;
-  margin: auto;
+  margin: 0px 30px 0px 30px;
 }
 
 .counters-options {
@@ -43,7 +43,7 @@ tr {
   width: 300px;
   margin-top: 20px;
   border: none;
-  border-radius: 15px;
+  border-radius: 10px;
   color: var(--dark-mode-buttons-header);
   font-size: 30px;
   font-weight: 700;
@@ -52,7 +52,7 @@ tr {
 
 .start-button:hover {
   cursor: pointer;
-  background-color: var(--selected-green-hover);
+  background-color: var(--dark-mode-accent);
 }
 
 .action-text {
@@ -76,9 +76,8 @@ tr {
 }
 
 .presets {
-  border-radius: 20px;
-  border: 3px solid var(--dark-mode-white);
-  height: 100px;
+  border-radius: 10px;
+  border: 2px solid var(--dark-mode-white);
   color: var(--dark-mode-text);
   padding: 0 20px 0 20px;
   font-weight: 400;
@@ -96,4 +95,55 @@ tr {
 
 .presets-text {
   font-weight: 400;
+}
+
+.pie-chart {
+  width: 35vh;
+  height: 35vh;
+  max-height: 300px;
+  max-width: 300px;
+}
+
+.info-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.description-container {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--dark-mode-white);
+  width: 80%;
+  margin: auto;
+  margin-top: 30px;
+}
+
+.highlighted-text {
+  color: var(--dark-mode-accent);
+  font-weight: 700;
+}
+
+.presets-buttons {
+  padding: 0px 20px 20px 20px;
+}
+
+.buttons-row {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0px 10px 0px;
+}
+
+.preset-button {
+  color: var(--dark-mode-white);
+  background-color: var(--dark-mode-buttons-header);
+  border: 1px solid var(--dark-mode-white);
+  width: 140px;
+  height: 35px;
+  border-radius: 16px;
+}
+
+.preset-button:hover {
+  color: var(--dark-mode-main);
+  background-color: var(--dark-mode-text);
 }

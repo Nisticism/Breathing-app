@@ -2,6 +2,10 @@ import './breathe.css';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import BigLogo from '../assets/big_icon.svg';
+import { Pie } from 'react-chartjs-2';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 function Breath() {
 
@@ -171,41 +175,119 @@ function Breath() {
     console.log("breathingLoop: " + breathingLoop);
   }
 
+  function pressCalm() {
+    setInhaleSetting(4);
+    setSustainInSetting(0);
+    setExhaleSetting(6);
+    setSustainOutSetting(0);
+  }
+  
+  function pressBox() {
+    setInhaleSetting(4);
+    setSustainInSetting(4);
+    setExhaleSetting(4);
+    setSustainOutSetting(4);
+  }
+
+  function pressFocus() {
+    setInhaleSetting(4);
+    setSustainInSetting(7);
+    setExhaleSetting(8);
+    setSustainOutSetting(0);
+  }
+
+  function pressCenter() {
+    setInhaleSetting(4);
+    setSustainInSetting(0);
+    setExhaleSetting(4);
+    setSustainOutSetting(0);
+  }
+
+  function pressPranayama1() {
+    setInhaleSetting(4);
+    setSustainInSetting(0);
+    setExhaleSetting(6);
+    setSustainOutSetting(0);
+  }
+
+  function pressPranayama2() {
+    setInhaleSetting(4);
+    setSustainInSetting(0);
+    setExhaleSetting(6);
+    setSustainOutSetting(0);
+  }
+
+  const pieData = {
+    labels: [
+      'Inhale',
+      'Retain',
+      'Exhale',
+      'Sustain'
+    ],
+    datasets: [{
+      label: 'Breathe Settings',
+      data: [inhaleSetting, sustainInSetting, exhaleSetting, sustainOutSetting],
+      backgroundColor: [
+        '#1DBDC3',
+        '#00A1A5',
+        '#008488',
+        '#00696D'
+      ],
+      hoverOffset: 4,
+      legend: "none"
+    }]
+  };
+
+  const pieOptions = {
+    plugins: {
+      legend: {
+        display: false
+      }
+    }
+  }
+
+
+
   return (
     <div className="breath">
       <div className="title-container">
         <h1>Unplugg</h1>
         <img src={BigLogo} alt = "big logo" className="main-icon" />
       </div>
-      <div className="counters">
-        <table>
-          <tbody>
-            <tr className="counters-options">
-              <th className="float-left">Inhale</th>
-              <th className="float-right">
-                <input className="counters-input" type="number" min="1" max="120" value={inhaleSetting} onChange={(event) => handleChange(event, "inhale")}></input>
-              </th>
-            </tr>
-            <tr className="counters-options">
-              <th className="float-left">Sustain</th>
-              <th className="float-right">
-                <input className="counters-input" type="number" min="0" max="120" value={sustainInSetting} onChange={(event) => handleChange(event, "sustainIn")}></input>
-              </th>
-            </tr>
-            <tr className="counters-options">
-              <th className="float-left">Exhale</th>
-              <th className="float-right">
-                <input className="counters-input" type="number" min="1" max="120" value={exhaleSetting} onChange={(event) => handleChange(event, "exhale")}></input>
-              </th>
-            </tr>
-            <tr className="counters-options">
-              <th className="float-left">Sustain</th>
-              <th className="float-right">
-                <input className="counters-input" type="number" min="0" max="120" value={sustainOutSetting} onChange={(event) => handleChange(event, "sustainOut")}></input>
-              </th>
-            </tr>
-          </tbody>
-        </table>
+      <div className="info-container">
+        <div className="pie-chart">
+          <Pie data={pieData} options={pieOptions}/>
+        </div>
+        <div className="counters">
+          <table>
+            <tbody>
+              <tr className="counters-options">
+                <th className="float-left">Inhale</th>
+                <th className="float-right">
+                  <input className="counters-input" type="number" min="1" max="120" value={inhaleSetting} onChange={(event) => handleChange(event, "inhale")}></input>
+                </th>
+              </tr>
+              <tr className="counters-options">
+                <th className="float-left">Sustain</th>
+                <th className="float-right">
+                  <input className="counters-input" type="number" min="0" max="120" value={sustainInSetting} onChange={(event) => handleChange(event, "sustainIn")}></input>
+                </th>
+              </tr>
+              <tr className="counters-options">
+                <th className="float-left">Exhale</th>
+                <th className="float-right">
+                  <input className="counters-input" type="number" min="1" max="120" value={exhaleSetting} onChange={(event) => handleChange(event, "exhale")}></input>
+                </th>
+              </tr>
+              <tr className="counters-options">
+                <th className="float-left">Sustain</th>
+                <th className="float-right">
+                  <input className="counters-input" type="number" min="0" max="120" value={sustainOutSetting} onChange={(event) => handleChange(event, "sustainOut")}></input>
+                </th>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
       <div className="center">
         <button className="start-button" onClick={toggleLoop}>{buttonText}</button>
@@ -219,7 +301,43 @@ function Breath() {
       <div className="presets-container">
         <div className="presets">
           <h1 className="presets-text">Presets</h1>
+          <div className="presets-buttons">
+            <div className="buttons-row">
+              <button className="button preset-button" onClick={pressCalm}>
+                CALM
+              </button>
+              <button className="button preset-button" onClick={pressBox}>
+                BOX
+              </button>
+              <button className="button preset-button" onClick={pressFocus}>
+                FOCUS
+              </button>
+            </div>
+            <div className="buttons-row">
+              <button className="button preset-button" onClick={pressCenter}>
+                CENTER
+              </button>
+              <button className="button preset-button" onClick={pressPranayama1}>
+                PRANAYAMA 2
+              </button>
+              <button className="button preset-button" onClick={pressPranayama2}>
+                PRANAYAMA 3
+              </button>
+            </div>
+          </div>
         </div>
+      </div>
+      <div className="description-container">
+        <span>
+          Breathwork is a powerful tool.&nbsp;&nbsp;It provides numerous benefits for both their physical 
+          and mental health.&nbsp;&nbsp;By focusing on deep, intentional breathing, individuals can 
+        </span>
+        <span className="highlighted-text">
+          &nbsp;reduce stress and anxiety, improve mental clarity and focus, and even boost their immune system.
+        </span>
+          &nbsp;&nbsp;Additionally, breathwork can help to counteract the negative effects of sitting for prolonged 
+          periods, which can be common when working from home, making it an excellent addition to 
+          any remote worker's self-care toolkit.
       </div>
     </div>
   );

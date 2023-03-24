@@ -28,4 +28,10 @@ code {
   --dark-mode-text: #BAFCFF;
   --dark-mode-white: #F1FFFF;
 
+  /* chart colors:  */
+  --pie-inhale: #1DBDC3;
+  --pie-retain: #00A1A5;
+  --pie-exhale: #008488;
+  --pie-sustain: #00696D;
+
 }
