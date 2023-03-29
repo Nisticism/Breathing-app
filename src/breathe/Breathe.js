@@ -69,10 +69,6 @@ function Breath() {
     }
   }, [inhaleSetting, sustainInSetting, exhaleSetting, sustainOutSetting]);
 
-  function delay(time) {
-    return new Promise(resolve => setTimeout(resolve, time));
-  }
-
   function timerFunction() {
     setFirstLoop(false);
     if (breathingLoop) {
