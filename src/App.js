@@ -1,4 +1,4 @@
-import './App.css';
+import './app.css';
 import { default as Breath } from './breathe/Breathe';
 import { FiMenu } from 'react-icons/fi';
 import React, { useState } from 'react';
