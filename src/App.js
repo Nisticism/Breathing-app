@@ -3,14 +3,17 @@ import { default as Breath } from './breathe/Breathe';
 import { FiMenu } from 'react-icons/fi';
 import React, { useState } from 'react';
 import Logo from './assets/icon.svg';
+import { LoginSignup } from './login_signup/LoginSignup';
 
 function App() {
 
   const [menu, setMenu] = useState(true);
 
+  const [openSignup, setOpenSignup] = useState(false);
+
   return (
     <div className="App">
-      <div className="header">
+      <div className="header" onClick={ () => openSignup && setOpenSignup(false)}>
         <div className="left-info">
           <div className="menu-icon-container" onClick={() => menu ? setMenu(false) : setMenu(true)}>
             <FiMenu className="menu-icon"/>
@@ -21,7 +24,7 @@ function App() {
           </div>
         </div>
         <div className="right-info">
-          <button className="button login-button">
+          <button className="button login-button" onClick={() => setOpenSignup(true)}>
             Login
           </button>
           <button className="button register-button">
@@ -65,6 +68,7 @@ function App() {
           </div>
         </div>
       </div>
+      <LoginSignup open = { openSignup } onClose = {() => setOpenSignup(false)}/>
       <Breath />
     </div>
   );

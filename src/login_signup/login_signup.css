@@ -1,0 +1,26 @@
+.text {
+  color: white;
+}
+
+.overlay {
+  background-color: rgba(82, 82, 82, 0.4);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  width: 30%;
+  min-width: 300px;
+  height: 60vh;
+  min-height: 600px;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  border-radius: 10px;
+  border: 2px solid var(--dark-mode-white);
+  background-color: var(--sign-up-window);
+  box-shadow: 0px 0px 20px 0px var(--dark-mode-white);
+}

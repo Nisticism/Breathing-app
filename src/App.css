@@ -6,6 +6,7 @@
   justify-content: space-between;
   align-items: center;
   border-bottom: 2px solid var(--dark-mode-white);
+  z-index: -1;
 }
 
 .app-title {
@@ -159,4 +160,9 @@
   color: var(--dark-mode-buttons-header);
   background-color: var(--dark-mode-text);
   border: 1px solid var(--dark-mode-text);
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
 }
