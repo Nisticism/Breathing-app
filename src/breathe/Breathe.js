@@ -31,6 +31,8 @@ function Breath() {
 
   const timerRef = React.useRef();
 
+  const [firstLoop, setFirstLoop] = useState(true);
+
   function handleChange(event, code) {
     if (!breathingLoop) {
       switch(code) {
@@ -48,80 +50,10 @@ function Breath() {
   }
 
   useEffect(() => {
-    timerRef.current = setInterval(() => {
-      if (breathingLoop) {
-        console.log("timerCount: " + timerCount);
-        console.log(inhale + " " + sustainIn + " " + exhale + " " + sustainOut);
-        //  Inhale 
-        if (inhale > 0 && timerCount === 0) {
-          setInhale(inhale - 1);
-          setTimerText(inhale - 1);
-          console.log(actionText);
-          if (inhale === 1) {
-            if (sustainInSetting > 0) {
-              setActionText("Sustaining");
-              setTimerText(sustainInSetting);
-              setTimerCount(timerCount + 1);
-            } else {
-              setActionText("Exhaling");
-              setTimerText(exhaleSetting);
-              setTimerCount(timerCount + 2);
-            }
-          }
-        //  Inhale reaches 0
-        }
-        
-        if (sustainIn > 0 && timerCount === 1) {
-          setSustainIn(sustainIn - 1);
-          setTimerText(sustainIn - 1);
-          console.log(actionText);
-          if (sustainIn === 1) {
-            setTimerText(exhaleSetting);
-            setActionText("Exhaling");
-            setTimerCount(timerCount + 1);
-          }
-        //  Sustain reaches 0
-        } 
-        
-        if (exhale > 0 && timerCount === 2) {
-          setExhale(exhale - 1);
-          setTimerText(exhale - 1);
-          console.log(actionText);
-          if (exhale === 1) {
-            if (sustainOutSetting > 0) {
-              setActionText("Sustaining");
-              setTimerCount(timerCount + 1);
-              setTimerText(sustainOutSetting);
-            } else {
-              setActionText("Inhaling");
-              setTimerCount(0);
-              setTimerText(inhaleSetting);
-              setInhale(inhaleSetting);
-              setSustainIn(sustainInSetting);
-              setExhale(exhaleSetting);
-              setSustainOut(sustainOutSetting);
-            }
-          }
-        } 
-        
-        if (sustainOut > 0 && timerCount === 3) {
-          setSustainOut(sustainOut - 1);
-          setTimerText(sustainOut - 1);
-          console.log(actionText);
-          if (sustainOut === 1) {
-            setTimerText(inhaleSetting);
-            setActionText("Inhaling");
-            setTimerCount(0);
-            setInhale(inhaleSetting);
-            setSustainIn(sustainInSetting);
-            setExhale(exhaleSetting);
-            setSustainOut(sustainOutSetting);
-          }
-        }
-      }
-    }, 1000);
+    timerRef.current = setInterval(() => timerFunction(), firstLoop ? 0 : 1000);
     return () => clearInterval(timerRef.current);
   });
+
 
   useEffect(() => {
     setActionText(actionText);
@@ -137,8 +69,87 @@ function Breath() {
     }
   }, [inhaleSetting, sustainInSetting, exhaleSetting, sustainOutSetting]);
 
+  function delay(time) {
+    return new Promise(resolve => setTimeout(resolve, time));
+  }
+
+  function timerFunction() {
+    setFirstLoop(false);
+    if (breathingLoop) {
+      console.log("timerCount: " + timerCount);
+      console.log(inhale + " " + sustainIn + " " + exhale + " " + sustainOut);
+      //  Inhale 
+      if (inhale > 0 && timerCount === 0) {
+        setInhale(inhale - 1);
+        setTimerText(inhale - 1);
+        console.log(actionText);
+        if (inhale === 1) {
+          if (sustainInSetting > 0) {
+            setActionText("Sustaining");
+            setTimerText(sustainInSetting);
+            setTimerCount(timerCount + 1);
+          } else {
+            setActionText("Inhaling");
+            setTimerText(inhaleSetting);
+            setTimerCount(timerCount + 2);
+          }
+        }
+      //  Inhale reaches 0
+      }
+      
+      if (sustainIn > 0 && timerCount === 1) {
+        setSustainIn(sustainIn - 1);
+        setTimerText(sustainIn - 1);
+        console.log(actionText);
+        if (sustainIn === 1) {
+          setTimerText(exhaleSetting);
+          setActionText("Exhaling");
+          setTimerCount(timerCount + 1);
+        }
+      //  Sustain reaches 0
+      } 
+      
+      if (exhale > 0 && timerCount === 2) {
+        setExhale(exhale - 1);
+        setTimerText(exhale - 1);
+        console.log(actionText);
+        if (exhale === 1) {
+          if (sustainOutSetting > 0) {
+            setActionText("Sustaining");
+            setTimerCount(timerCount + 1);
+            setTimerText(sustainOutSetting);
+          } else {
+            setActionText("Exhaling");
+            setTimerCount(0);
+            setTimerText(inhaleSetting);
+            setInhale(inhaleSetting);
+            setSustainIn(sustainInSetting);
+            setExhale(exhaleSetting);
+            setSustainOut(sustainOutSetting);
+          }
+        }
+      } 
+      
+      if (sustainOut > 0 && timerCount === 3) {
+        setSustainOut(sustainOut - 1);
+        setTimerText(sustainOut - 1);
+        console.log(actionText);
+        if (sustainOut === 1) {
+          setTimerText(inhaleSetting);
+          setActionText("Inhaling");
+          setTimerCount(0);
+          setInhale(inhaleSetting);
+          setSustainIn(sustainInSetting);
+          setExhale(exhaleSetting);
+          setSustainOut(sustainOutSetting);
+        }
+      }
+    }
+  }
+
   function toggleLoop() {
     if (!breathingLoop) {
+      setFirstLoop(true);
       if (inhaleSetting > 0 && exhaleSetting > 0) {
         setBreathingLoop(true);
         runBreathingLoop(true);
@@ -166,7 +177,7 @@ function Breath() {
       setButtonText("STOP");
       setActionText("Inhaling");
       setTimerCount(0);
-      console.log("running breathing loop")
+      console.log("running breathing loop");
     } else {
       setButtonText("BREATHE");
       setActionText("Waiting to start ...");
