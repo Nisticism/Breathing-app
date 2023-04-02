@@ -27,7 +27,7 @@ function App() {
           <button className="button login-button" onClick={() => setOpenSignup(true)}>
             Login
           </button>
-          <button className="button register-button">
+          <button className="button register-button" onClick={() => setOpenSignup(true)}>
             Register
           </button>
         </div>
@@ -61,14 +61,14 @@ function App() {
               </div>
             </div>
             <div className="menu-item-container">
-              <div className="menu-item" style={menu ? {visibility: "hidden"} : {visibility: "visible", transitionDelay: "0.6s", transitionProperty: "visibility"}}>
+              <div className="menu-item" style={menu ? {visibility: "hidden"} : {visibility: "visible", transitionDelay: "0.6s", transitionProperty: "visibility"}} onClick={() => setOpenSignup(true)}>
                 Login/logout
               </div>
             </div>
           </div>
         </div>
       </div>
-      <LoginSignup open = { openSignup } onClose = {() => setOpenSignup(false)}/>
+      <LoginSignup open = { openSignup } onClose = {() => setOpenSignup(false)} firstStep = { 1 }/>
       <Breath />
     </div>
   );

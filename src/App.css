@@ -20,7 +20,7 @@
 
 .app-title-container {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
   margin-left: 20px;
@@ -119,6 +119,10 @@
   justify-content: center;
 }
 
+.text-center {
+  text-align: center;
+}
+
 .left-info {
   display: flex;
   align-items: center;
@@ -165,4 +169,12 @@
 .flex-center {
   display: flex;
   justify-content: center;
+}
+
+.light-text {
+  color: var(--dark-text-2);
+}
+
+.lighter-text {
+  color: var(--dark-mode-white);
 }

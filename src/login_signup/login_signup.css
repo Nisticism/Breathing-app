@@ -1,5 +1,5 @@
 .text {
-  color: white;
+  color: var(--dark-text-2);
 }
 
 .overlay {
@@ -11,16 +11,121 @@
 
 .container {
   width: 30%;
-  min-width: 300px;
+  min-width: 410px;
   height: 60vh;
   min-height: 600px;
   position: fixed;
-  top: 40%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  display: flex;
   border-radius: 10px;
   border: 2px solid var(--dark-mode-white);
-  background-color: var(--sign-up-window);
+  background-color: var(--dark-color-2);
   box-shadow: 0px 0px 20px 0px var(--dark-mode-white);
+}
+
+.inner-sign-up {
+  width: 100%;
+  padding-top: 20px;
+}
+
+.sign-up-title {
+  color: var(--dark-text-2);
+  font-size: 3rem;
+  font-weight: 600;
+}
+
+.sign-up-sub-title {
+  margin-top: 20px;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.sign-up-text {
+  padding: 20px;
+  white-space: pre-wrap;
+  font-size: 16px;
+}
+
+.input-container {
+  min-height: 50px;
+  padding: 5px 10% 5px 10%;
+}
+
+.input-container input {
+  height: 50px;
+  width: 100%;
+  background-color: #49454F;
+  border: none;
+  border-bottom: 1px solid var(--dark-text-2);
+  border-radius: 5px 5px 0px 0px;
+  padding-left: 15px;
+  padding-right: 15px;
+  color: var(--dark-text-2);
+}
+
+[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 20px;
+  width: 20px;
+  color: var(--dark-text-2);
+  visibility: visible;
+  background-image: url(../assets/close-button.png);
+  background-size: 20px 20px;
+}
+
+.google-container {
+  padding: 20px 10% 20px 10%;
+}
+
+.inner-button {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+.icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  flex: 1;
+}
+
+.right {
+  flex: 1;
+}
+
+.button-text-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 6;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.google-button {
+  width: 100%;
+  height: 60px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.google-icon {
+  height: 60%;
+}
+
+.login-text-area {
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.login-text {
+  text-decoration: underline;
+  color: #4CD9DF;
+  cursor: pointer;
 }
