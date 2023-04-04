@@ -79,66 +79,79 @@ function Breath() {
         setInhale(inhale - 1);
         setTimerText(inhale - 1);
         console.log(actionText);
-        if (inhale === 1) {
-          if (sustainInSetting > 0) {
-            setActionText("Sustaining");
-            setTimerText(sustainInSetting);
-            setTimerCount(timerCount + 1);
-          } else {
-            setActionText("Inhaling");
-            setTimerText(inhaleSetting);
-            setTimerCount(timerCount + 2);
-          }
-        }
+      }
+
       //  Inhale reaches 0
+      if (inhale === 0 && timerCount === 0) {
+        if (sustainInSetting > 0) {
+          setActionText("Sustaining");
+          setSustainIn(sustainIn - 1);
+          setTimerText(sustainInSetting - 1);
+          setTimerCount(timerCount + 1);
+        } else {
+          setActionText("Exhaling");
+          setExhale(exhale - 1);
+          setTimerText(exhaleSetting - 1);
+          setTimerCount(timerCount + 2);
+        }
       }
       
+      // Sustain In
       if (sustainIn > 0 && timerCount === 1) {
         setSustainIn(sustainIn - 1);
         setTimerText(sustainIn - 1);
         console.log(actionText);
-        if (sustainIn === 1) {
-          setTimerText(exhaleSetting);
-          setActionText("Exhaling");
-          setTimerCount(timerCount + 1);
-        }
-      //  Sustain reaches 0
       } 
+
+      //  Sustain reaches 0
+      if (sustainIn === 0 && timerCount === 1) {
+        setExhale(exhale - 1);
+        setTimerText(exhaleSetting - 1);
+        setActionText("Exhaling");
+        setTimerCount(timerCount + 1);
+      }
       
+      // Exhale
       if (exhale > 0 && timerCount === 2) {
         setExhale(exhale - 1);
         setTimerText(exhale - 1);
         console.log(actionText);
-        if (exhale === 1) {
-          if (sustainOutSetting > 0) {
-            setActionText("Sustaining");
-            setTimerCount(timerCount + 1);
-            setTimerText(sustainOutSetting);
-          } else {
-            setActionText("Exhaling");
-            setTimerCount(0);
-            setTimerText(inhaleSetting);
-            setInhale(inhaleSetting);
-            setSustainIn(sustainInSetting);
-            setExhale(exhaleSetting);
-            setSustainOut(sustainOutSetting);
-          }
-        }
       } 
-      
-      if (sustainOut > 0 && timerCount === 3) {
-        setSustainOut(sustainOut - 1);
-        setTimerText(sustainOut - 1);
-        console.log(actionText);
-        if (sustainOut === 1) {
-          setTimerText(inhaleSetting);
+
+      // Exhale reaches 0
+      if (exhale === 0 && timerCount === 2) {
+        if (sustainOutSetting > 0) {
+          setActionText("Sustaining");
+          setTimerCount(timerCount + 1);
+          setSustainOut(sustainOut - 1);
+          setTimerText(sustainOutSetting - 1);
+        } else {
           setActionText("Inhaling");
           setTimerCount(0);
+          setTimerText(inhaleSetting);
           setInhale(inhaleSetting);
           setSustainIn(sustainInSetting);
           setExhale(exhaleSetting);
           setSustainOut(sustainOutSetting);
         }
+      }
+      
+      // Sustain Out
+      if (sustainOut > 0 && timerCount === 3) {
+        setSustainOut(sustainOut - 1);
+        setTimerText(sustainOut - 1);
+        console.log(actionText);
+      }
+
+      // Sustain Out reaches 0
+      if (sustainOut === 0 && timerCount === 3) {
+        setTimerText(inhaleSetting);
+        setActionText("Inhaling");
+        setTimerCount(0);
+        setInhale(inhaleSetting);
+        setSustainIn(sustainInSetting);
+        setExhale(exhaleSetting);
+        setSustainOut(sustainOutSetting);
       }
     }
   }
