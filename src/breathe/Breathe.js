@@ -74,6 +74,8 @@ function Breath() {
     if (breathingLoop) {
       console.log("timerCount: " + timerCount);
       console.log(inhale + " " + sustainIn + " " + exhale + " " + sustainOut);
+      sustainOutSetting > 0 ? setSustainOut(sustainOutSetting) : setExhale(exhaleSetting);
+      
       //  Inhale 
       if (inhale > 0 && timerCount === 0) {
         setInhale(inhale - 1);
@@ -83,6 +85,8 @@ function Breath() {
 
       //  Inhale reaches 0
       if (inhale === 0 && timerCount === 0) {
+        setInhale(inhaleSetting);
+
         if (sustainInSetting > 0) {
           setActionText("Sustaining");
           setSustainIn(sustainIn - 1);
@@ -105,6 +109,7 @@ function Breath() {
 
       //  Sustain reaches 0
       if (sustainIn === 0 && timerCount === 1) {
+        setSustainIn(sustainInSetting);
         setExhale(exhale - 1);
         setTimerText(exhaleSetting - 1);
         setActionText("Exhaling");
@@ -116,11 +121,12 @@ function Breath() {
         setExhale(exhale - 1);
         setTimerText(exhale - 1);
         console.log(actionText);
-      } 
+      }
 
       // Exhale reaches 0
       if (exhale === 0 && timerCount === 2) {
         if (sustainOutSetting > 0) {
+          setExhale(exhaleSetting);
           setActionText("Sustaining");
           setTimerCount(timerCount + 1);
           setSustainOut(sustainOut - 1);
@@ -128,11 +134,8 @@ function Breath() {
         } else {
           setActionText("Inhaling");
           setTimerCount(0);
-          setTimerText(inhaleSetting);
-          setInhale(inhaleSetting);
-          setSustainIn(sustainInSetting);
-          setExhale(exhaleSetting);
-          setSustainOut(sustainOutSetting);
+          setTimerText(inhaleSetting - 1);
+          setInhale(inhaleSetting - 1);
         }
       }
       
@@ -145,15 +148,22 @@ function Breath() {
 
       // Sustain Out reaches 0
       if (sustainOut === 0 && timerCount === 3) {
-        setTimerText(inhaleSetting);
         setActionText("Inhaling");
-        setTimerCount(0);
-        setInhale(inhaleSetting);
-        setSustainIn(sustainInSetting);
-        setExhale(exhaleSetting);
-        setSustainOut(sustainOutSetting);
+          setTimerCount(0);
+          setTimerText(inhaleSetting - 1);
+          setInhale(inhaleSetting - 1);
       }
     }
+  }
+
+  function reset() {
+    setTimerText(inhaleSetting);
+    setActionText("Inhaling");
+    setTimerCount(0);
+    setInhale(inhaleSetting);
+    setSustainIn(sustainInSetting);
+    setExhale(exhaleSetting);
+    setSustainOut(sustainOutSetting);
   }
 
   function toggleLoop() {
@@ -352,7 +362,7 @@ function Breath() {
       }
     },
     animation: {
-      duration: 1000
+      duration: 1000,
     }
   }
 
