@@ -133,6 +133,7 @@ function Breath() {
           setSustainIn(sustainInSetting);
           setExhale(exhaleSetting);
           setSustainOut(sustainOutSetting);
+          setFirstLoop(true);
         }
       }
       
@@ -152,6 +153,7 @@ function Breath() {
         setSustainIn(sustainInSetting);
         setExhale(exhaleSetting);
         setSustainOut(sustainOutSetting);
+        setFirstLoop(true);
       }
     }
   }
