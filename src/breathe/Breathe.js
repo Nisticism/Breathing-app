@@ -277,7 +277,6 @@ function Breath() {
       'Sustain'
     ],
     datasets: [{
-      label: 'Breathe Settings',
       data:
       [(inhaleSetting - inhale), inhale, 
         (sustainInSetting - sustainIn), sustainIn, 
@@ -309,7 +308,8 @@ function Breath() {
     cutout: "50%",
     borderWidth: 0,
     borderJoinStyle: "bevel",
-    borderColor: "#BAFCFF"
+    borderColor: "#BAFCFF",
+    spacing: 0
   }
 
 
