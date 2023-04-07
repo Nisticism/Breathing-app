@@ -25,8 +25,6 @@ function Breath() {
   const [breathingLoop, setBreathingLoop] = useState(false);
   const [actionText, setActionText] = useState("Waiting to start ...");
 
-  const [inhaleTimerTime, setInhaleTimerTime] = useState(0);
-
   const [timerCount, setTimerCount] = useState(0);
 
   const timerRef = React.useRef();
@@ -50,7 +48,7 @@ function Breath() {
   }
 
   useEffect(() => {
-    timerRef.current = setInterval(() => timerFunction(), firstLoop ? 0 : 1000);
+    timerRef.current = setInterval(() => timerFunction(), firstLoop ? 0 : 100);
     return () => clearInterval(timerRef.current);
   });
 
@@ -65,7 +63,7 @@ function Breath() {
       setSustainIn(sustainInSetting);
       setExhale(exhaleSetting);
       setSustainOut(sustainOutSetting);
-      setTimerText(inhaleSetting);
+      setTimerText(inhaleSetting - 1);
     }
   }, [inhaleSetting, sustainInSetting, exhaleSetting, sustainOutSetting]);
 
@@ -76,59 +74,62 @@ function Breath() {
       console.log(inhale + " " + sustainIn + " " + exhale + " " + sustainOut);
       //  Inhale 
       if (inhale > 0 && timerCount === 0) {
-        setInhale(inhale - 1);
-        setTimerText(inhale - 1);
+        setInhale(inhale - 0.1);
+        setTimerText(Math.trunc(inhale - 0.1));
         console.log(actionText);
       }
 
       //  Inhale reaches 0
-      if (inhale === 0 && timerCount === 0) {
+      if (inhale < 0.01 && timerCount === 0) {
         if (sustainInSetting > 0) {
-          setActionText("Sustaining");
-          setSustainIn(sustainIn - 1);
-          setTimerText(sustainInSetting - 1);
+          setActionText("Retain");
+          setSustainIn(sustainIn - 0.1);
+          setTimerText(Math.trunc(sustainInSetting - 1));
           setTimerCount(timerCount + 1);
         } else {
-          setActionText("Exhaling");
-          setExhale(exhale - 1);
-          setTimerText(exhaleSetting - 1);
+          setActionText("Exhale");
+          setExhale(exhale - 0.1);
+          setTimerText(Math.trunc(exhaleSetting - 1));
           setTimerCount(timerCount + 2);
         }
+        setInhale(0);
       }
       
       // Sustain In
       if (sustainIn > 0 && timerCount === 1) {
-        setSustainIn(sustainIn - 1);
-        setTimerText(sustainIn - 1);
+        setSustainIn(sustainIn - 0.1);
+        setTimerText(Math.trunc(sustainIn));
         console.log(actionText);
       } 
 
       //  Sustain reaches 0
-      if (sustainIn === 0 && timerCount === 1) {
-        setExhale(exhale - 1);
-        setTimerText(exhaleSetting - 1);
-        setActionText("Exhaling");
+      if (sustainIn < 0.01 && timerCount === 1) {
+        setExhale(exhale - 0.1);
+        setTimerText(Math.trunc(exhaleSetting - 1));
+        setActionText("Exhale");
         setTimerCount(timerCount + 1);
+        setSustainIn(0);
       }
       
       // Exhale
       if (exhale > 0 && timerCount === 2) {
-        setExhale(exhale - 1);
-        setTimerText(exhale - 1);
+        setExhale(exhale - 0.1);
+        setTimerText(Math.trunc(exhale));
         console.log(actionText);
       } 
 
       // Exhale reaches 0
-      if (exhale === 0 && timerCount === 2) {
+      if (exhale < 0.01 && timerCount === 2) {
         if (sustainOutSetting > 0) {
-          setActionText("Sustaining");
+          setActionText("Sustain");
           setTimerCount(timerCount + 1);
-          setSustainOut(sustainOut - 1);
-          setTimerText(sustainOutSetting - 1);
+          setSustainOut(sustainOut - 0.1);
+          setTimerText(Math.trunc(sustainOutSetting - 1));
+          setExhale(0);
         } else {
-          setActionText("Inhaling");
+          setActionText("Inhale");
           setTimerCount(0);
-          setTimerText(inhaleSetting);
+          setTimerText(Math.trunc(inhaleSetting - 1));
           setInhale(inhaleSetting);
           setSustainIn(sustainInSetting);
           setExhale(exhaleSetting);
@@ -139,15 +140,15 @@ function Breath() {
       
       // Sustain Out
       if (sustainOut > 0 && timerCount === 3) {
-        setSustainOut(sustainOut - 1);
-        setTimerText(sustainOut - 1);
+        setSustainOut(sustainOut - 0.1);
+        setTimerText(Math.trunc(sustainOut));
         console.log(actionText);
       }
 
       // Sustain Out reaches 0
-      if (sustainOut === 0 && timerCount === 3) {
-        setTimerText(inhaleSetting);
-        setActionText("Inhaling");
+      if (sustainOut < 0.01 && timerCount === 3) {
+        setTimerText(Math.trunc(inhaleSetting - 1));
+        setActionText("Inhale");
         setTimerCount(0);
         setInhale(inhaleSetting);
         setSustainIn(sustainInSetting);
@@ -179,14 +180,14 @@ function Breath() {
     setSustainIn(sustainInSetting);
     setExhale(exhaleSetting);
     setSustainOut(sustainOutSetting);
-    setTimerText(inhaleSetting);
+    setTimerText(inhaleSetting - 1);
     console.log("stopping...");
   }
 
   function runBreathingLoop(toggle) {
     if(toggle) {
       setButtonText("STOP");
-      setActionText("Inhaling");
+      setActionText("Inhale");
       setTimerCount(0);
       console.log("running breathing loop");
     } else {
@@ -194,10 +195,6 @@ function Breath() {
       setActionText("Waiting to start ...");
       stopBreathingLoop();
     }
-  }
-
-  function logMe() {
-    console.log("breathingLoop: " + breathingLoop);
   }
 
   function pressCenter() {
@@ -268,39 +265,15 @@ function Breath() {
       "https://www.youtube.com/watch?v=tybOi4hjZFQ", "_blank");
   }
 
-  const pieDataInitial = {
-    labels: [
-      'Inhale',
-      'Retain',
-      'Exhale',
-      'Sustain'
-    ],
-    datasets: [{
-      label: 'Breathe Settings',
-      data: [inhaleSetting, sustainInSetting, exhaleSetting, sustainOutSetting],
-      backgroundColor: [
-        '#1DBDC3',
-        '#00A1A5',
-        '#008488',
-        '#00696D',
-      ],
-      hoverOffset: 2
-    }]
-  };
-
-  function getInhalePieSetting() {
-    if (breathingLoop) {
-      return (inhaleSetting - inhale + 1);
-    } else {
-      return (inhaleSetting - inhale);
-    }
-  }
-
   let pieData = {
     labels: [
+      'Inhaling ...',
       'Inhale',
+      'Retaining ...',
       'Retain',
+      'Exhaling ...',
       'Exhale',
+      'Sustaining ...',
       'Sustain'
     ],
     datasets: [{
@@ -311,41 +284,18 @@ function Breath() {
         (exhaleSetting - exhale), exhale, 
         (sustainOutSetting - sustainOut), sustainOut],
       backgroundColor: [
-        '#FFFFFF',
+        '#B8C8C8',
         '#1DBDC3',
-        '#FFFFFF',
+        '#B8CCCC',
         '#00A1A5',
-        '#FFFFFF',
+        '#B8D0D1',
         '#008488',
-        '#FFFFFF',
+        '#BCD4D5',
         '#00696D',
       ],
       hoverOffset: 2
     }]
   };
-
-  function setPieData() {
-    this.pieData.datasets = 
-    [{
-      label: 'Breathe Settings',
-      data:
-        [inhale, (inhaleSetting - inhale), 
-        sustainIn, (sustainInSetting - sustainIn), 
-        exhale, (exhaleSetting - exhale), 
-        sustainOut, (sustainOutSetting - sustainOut)],
-      backgroundColor: [
-        '#1DBDC3',
-        '#FFFFFF',
-        '#00A1A5',
-        '#FFFFFF',
-        '#008488',
-        '#FFFFFF',
-        '#00696D',
-        '#FFFFFF',
-      ],
-      hoverOffset: 2
-    }]
-  }
 
   const pieOptions = {
     plugins: {
@@ -355,7 +305,11 @@ function Breath() {
     },
     animation: {
       duration: 0
-    }
+    },
+    cutout: "50%",
+    borderWidth: 0,
+    borderJoinStyle: "bevel",
+    borderColor: "#BAFCFF"
   }
 
 
@@ -369,6 +323,9 @@ function Breath() {
       <div className="info-container">
         <div className="pie-chart">
           <Pie data={pieData} options={pieOptions}/>
+          <div className="inner-timer">
+            {breathingLoop && <div><span>{ timerText }</span><div>{ actionText }</div></div> }
+          </div>
         </div>
         <div className="counters">
           <table>
@@ -380,7 +337,7 @@ function Breath() {
                 </th>
               </tr>
               <tr className="counters-options">
-                <th className="float-left">Sustain</th>
+                <th className="float-left">Retain</th>
                 <th className="float-right">
                   <input className="counters-input" type="number" min="0" max="120" value={sustainInSetting} onChange={(event) => handleChange(event, "sustainIn")}></input>
                 </th>
@@ -404,12 +361,6 @@ function Breath() {
       <div className="center">
         <button className="start-button" onClick={toggleLoop}>{buttonText}</button>
       </div>
-      {breathingLoop && 
-        <div>
-          <div className="action-text">{actionText}</div>
-          <div className="timer-text">Time: {timerText}</div>
-        </div>
-      }
       <div className="presets-container">
         <div className="presets">
           <h1 className="presets-text">Presets</h1>
@@ -441,7 +392,7 @@ function Breath() {
                 PRANAYAMA 3
               </button>
               <button className="button preset-button" onClick={pressWimHof}>
-                WIM HOF
+                WIM HOF (Video)
               </button>
             </div>
           </div>
