@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/Breathing-app/static/css/main.a741160f.css",
-    "main.js": "/Breathing-app/static/js/main.b4211155.js",
-    "static/js/787.9a7a5a2b.chunk.js": "/Breathing-app/static/js/787.9a7a5a2b.chunk.js",
-    "static/media/google_icon.png": "/Breathing-app/static/media/google_icon.9db27c1011edb821b59c.png",
-    "static/media/big_icon.svg": "/Breathing-app/static/media/big_icon.c2e5e445f3d79e1cc9f335b16cdd7721.svg",
-    "static/media/icon.svg": "/Breathing-app/static/media/icon.6574e396c62ed7fc9f900dc01e33d372.svg",
-    "index.html": "/Breathing-app/index.html",
-    "main.a741160f.css.map": "/Breathing-app/static/css/main.a741160f.css.map",
-    "main.b4211155.js.map": "/Breathing-app/static/js/main.b4211155.js.map",
-    "787.9a7a5a2b.chunk.js.map": "/Breathing-app/static/js/787.9a7a5a2b.chunk.js.map"
+    "main.css": "/static/css/main.a741160f.css",
+    "main.js": "/static/js/main.7572822a.js",
+    "static/js/787.9a7a5a2b.chunk.js": "/static/js/787.9a7a5a2b.chunk.js",
+    "static/media/google_icon.png": "/static/media/google_icon.9db27c1011edb821b59c.png",
+    "static/media/big_icon.svg": "/static/media/big_icon.c2e5e445f3d79e1cc9f335b16cdd7721.svg",
+    "static/media/icon.svg": "/static/media/icon.6574e396c62ed7fc9f900dc01e33d372.svg",
+    "index.html": "/index.html",
+    "main.a741160f.css.map": "/static/css/main.a741160f.css.map",
+    "main.7572822a.js.map": "/static/js/main.7572822a.js.map",
+    "787.9a7a5a2b.chunk.js.map": "/static/js/787.9a7a5a2b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a741160f.css",
-    "static/js/main.b4211155.js"
+    "static/js/main.7572822a.js"
   ]
 }
