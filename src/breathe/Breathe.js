@@ -4,17 +4,21 @@ import { useEffect } from 'react';
 import BigLogo from '../assets/big_icon.svg';
 import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import InhaleAudio from '../assets/audio/inhale1s.wav';
+import RetainAudio from '../assets/audio/retain1s.wav';
+import ExhaleAudio from '../assets/audio/exhale1s.wav';
+import SustainAudio from '../assets/audio/sustain1s.wav';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-function Breath() {
+function Breath(props) {
 
   const [timerText, setTimerText] = useState(null);
 
-  const [inhaleSetting, setInhaleSetting] = useState(1);
-  const [sustainInSetting, setSustainInSetting] = useState(0);
-  const [exhaleSetting, setExhaleSetting] = useState(1);
-  const [sustainOutSetting, setSustainOutSetting] = useState(0);
+  const [inhaleSetting, setInhaleSetting] = useState(2);
+  const [sustainInSetting, setSustainInSetting] = useState(6);
+  const [exhaleSetting, setExhaleSetting] = useState(4);
+  const [sustainOutSetting, setSustainOutSetting] = useState(2);
 
   const [inhale, setInhale] = useState(inhaleSetting);
   const [sustainIn, setSustainIn] = useState(sustainInSetting);
@@ -30,6 +34,11 @@ function Breath() {
   const timerRef = React.useRef();
 
   const [firstLoop, setFirstLoop] = useState(true);
+
+  const inhaleAudio = new Audio(InhaleAudio);
+  const retainAudio = new Audio(RetainAudio);
+  const exhaleAudio = new Audio(ExhaleAudio);
+  const sustainAudio = new Audio(SustainAudio);
 
   function handleChange(event, code) {
     if (!breathingLoop) {
@@ -52,7 +61,6 @@ function Breath() {
     return () => clearInterval(timerRef.current);
   });
 
-
   useEffect(() => {
     setActionText(actionText);
   }, [actionText]);
@@ -74,22 +82,37 @@ function Breath() {
       console.log(inhale + " " + sustainIn + " " + exhale + " " + sustainOut);
       //  Inhale 
       if (inhale > 0 && timerCount === 0) {
+        inhaleAudio.play();
         setInhale(inhale - 0.1);
-        setTimerText(Math.trunc(inhale - 0.1));
+        if (inhale > 1) {
+          setTimerText(Math.trunc(inhale - 0.01 + 1));
+        } else {
+          setTimerText((Math.round((inhale - 0.1) * 10) / 10 ).toFixed(1));
+        }
         console.log(actionText);
       }
 
       //  Inhale reaches 0
       if (inhale < 0.01 && timerCount === 0) {
         if (sustainInSetting > 0) {
+          retainAudio.play();
           setActionText("Retain");
           setSustainIn(sustainIn - 0.1);
-          setTimerText(Math.trunc(sustainInSetting - 1));
+          if (sustainInSetting === 1) {
+            setTimerText(0.9);
+          } else {
+            setTimerText(sustainInSetting); 
+          }
           setTimerCount(timerCount + 1);
         } else {
+          exhaleAudio.play();
           setActionText("Exhale");
           setExhale(exhale - 0.1);
-          setTimerText(Math.trunc(exhaleSetting - 1));
+          if (exhaleSetting === 1) {
+            setTimerText(0.9);
+          } else {
+            setTimerText(exhaleSetting); 
+          }
           setTimerCount(timerCount + 2);
         }
         setInhale(0);
@@ -97,15 +120,25 @@ function Breath() {
       
       // Sustain In
       if (sustainIn > 0 && timerCount === 1) {
+        retainAudio.play();
         setSustainIn(sustainIn - 0.1);
-        setTimerText(Math.trunc(sustainIn));
+        if (sustainIn > 1) {
+          setTimerText(Math.trunc(sustainIn - 0.01 + 1));
+        } else {
+          setTimerText((Math.round((sustainIn - 0.1) * 10) / 10 ).toFixed(1));
+        }
         console.log(actionText);
       } 
 
       //  Sustain reaches 0
       if (sustainIn < 0.01 && timerCount === 1) {
+        exhaleAudio.play();
         setExhale(exhale - 0.1);
-        setTimerText(Math.trunc(exhaleSetting - 1));
+        if (exhaleSetting === 1) {
+          setTimerText(0.9);
+        } else {
+          setTimerText(exhaleSetting); 
+        }
         setActionText("Exhale");
         setTimerCount(timerCount + 1);
         setSustainIn(0);
@@ -113,23 +146,38 @@ function Breath() {
       
       // Exhale
       if (exhale > 0 && timerCount === 2) {
-        setExhale(exhale - 0.1);
-        setTimerText(Math.trunc(exhale));
+        exhaleAudio.play();
+          setExhale(exhale - 0.1);
+          if (exhale > 1) {
+            setTimerText(Math.trunc(exhale - 0.01 + 1));
+          } else {
+            setTimerText((Math.round((exhale - 0.1) * 10) / 10 ).toFixed(1));
+          }
         console.log(actionText);
       } 
 
       // Exhale reaches 0
       if (exhale < 0.01 && timerCount === 2) {
         if (sustainOutSetting > 0) {
+          sustainAudio.play();
           setActionText("Sustain");
           setTimerCount(timerCount + 1);
           setSustainOut(sustainOut - 0.1);
-          setTimerText(Math.trunc(sustainOutSetting - 1));
+          if (sustainOutSetting === 1) {
+            setTimerText(0.9);
+          } else {
+            setTimerText(sustainOutSetting); 
+          }
           setExhale(0);
         } else {
+          inhaleAudio.play();
           setActionText("Inhale");
           setTimerCount(0);
-          setTimerText(Math.trunc(inhaleSetting - 1));
+          if (inhaleSetting === 1) {
+            setTimerText(0.9);
+          } else {
+            setTimerText(inhaleSetting);
+          }
           setInhale(inhaleSetting);
           setSustainIn(sustainInSetting);
           setExhale(exhaleSetting);
@@ -140,14 +188,24 @@ function Breath() {
       
       // Sustain Out
       if (sustainOut > 0 && timerCount === 3) {
-        setSustainOut(sustainOut - 0.1);
-        setTimerText(Math.trunc(sustainOut));
+        sustainAudio.play();
+          setSustainOut(sustainOut - 0.1);
+          if (sustainOut > 1) {
+            setTimerText(Math.trunc(sustainOut - 0.01 + 1));
+          } else {
+            setTimerText((Math.round((sustainOut - 0.1) * 10) / 10 ).toFixed(1));
+          }
         console.log(actionText);
       }
 
       // Sustain Out reaches 0
       if (sustainOut < 0.01 && timerCount === 3) {
-        setTimerText(Math.trunc(inhaleSetting - 1));
+        inhaleAudio.play();
+        if (sustainOutSetting === 1) {
+          setTimerText(0.9);
+        } else {
+          setTimerText(sustainOutSetting); 
+        }
         setActionText("Inhale");
         setTimerCount(0);
         setInhale(inhaleSetting);
@@ -180,7 +238,7 @@ function Breath() {
     setSustainIn(sustainInSetting);
     setExhale(exhaleSetting);
     setSustainOut(sustainOutSetting);
-    setTimerText(inhaleSetting - 1);
+    setTimerText(inhaleSetting);
     console.log("stopping...");
   }
 
@@ -188,6 +246,7 @@ function Breath() {
     if(toggle) {
       setButtonText("STOP");
       setActionText("Inhale");
+      inhaleAudio.play();
       setTimerCount(0);
       console.log("running breathing loop");
     } else {
@@ -303,7 +362,7 @@ function Breath() {
       }
     },
     animation: {
-      duration: 0
+      duration: 0.1
     },
     cutout: "50%",
     borderWidth: 0,
@@ -324,7 +383,7 @@ function Breath() {
         <div className="pie-chart">
           <Pie data={pieData} options={pieOptions}/>
           <div className="inner-timer">
-            {breathingLoop && <div><span>{ timerText }</span><div>{ actionText }</div></div> }
+            {breathingLoop && props.initialStartSetting && <div><span>{ timerText }</span><div>{ actionText }</div></div> }
           </div>
         </div>
         <div className="counters">
