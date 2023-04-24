@@ -10,10 +10,23 @@ function App() {
   const [menu, setMenu] = useState(true);
 
   const [openSignup, setOpenSignup] = useState(false);
+  const [initialStart, setInitialStart] = useState(true);
+
+  function handleLogin() {
+    setOpenSignup(true);
+    setInitialStart(false);
+  }
+
+  function handleLoginWindowClose() {
+    if (openSignup) {
+      setOpenSignup(false);
+      setInitialStart(true);
+    }
+  }
 
   return (
     <div className="App">
-      <div className="header" onClick={ () => openSignup && setOpenSignup(false)}>
+      <div className="header" onClick={ handleLoginWindowClose }>
         <div className="left-info">
           <div className="menu-icon-container" onClick={() => menu ? setMenu(false) : setMenu(true)}>
             <FiMenu className="menu-icon"/>
@@ -24,7 +37,7 @@ function App() {
           </div>
         </div>
         <div className="right-info">
-          <button className="button login-button" onClick={() => setOpenSignup(true)}>
+          <button className="button login-button" onClick={ handleLogin }>
             Login
           </button>
           <button className="button register-button" onClick={() => setOpenSignup(true)}>
@@ -69,7 +82,7 @@ function App() {
         </div>
       </div>
       <LoginSignup open = { openSignup } onClose = {() => setOpenSignup(false)} firstStep = { 1 }/>
-      <Breath />
+      <Breath initialStartSetting = { initialStart }/>
     </div>
   );
 }

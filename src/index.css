@@ -34,6 +34,11 @@ code {
   --pie-exhale: #008488;
   --pie-sustain: #00696D;
 
+  --pie-inhale-2: #B8C8C8;
+  --pie-retain-2: #B8CCCC;
+  --pie-exhale-2: #B8D0D1;
+  --pie-sustain-2: #BCD4D5;
+
   --dark-color-2: #343434;
   --dark-text-2: #DDDDDD;
 
