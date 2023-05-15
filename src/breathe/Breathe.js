@@ -82,9 +82,9 @@ function Breath(props) {
       console.log(inhale + " " + sustainIn + " " + exhale + " " + sustainOut);
       //  Inhale 
       if (inhale > 0 && timerCount === 0) {
-        inhaleAudio.play();
         setInhale(inhale - 0.1);
         if (inhale > 1) {
+          inhaleAudio.play();
           setTimerText(Math.trunc(inhale - 0.01 + 1));
         } else {
           setTimerText((Math.round((inhale - 0.1) * 10) / 10 ).toFixed(1));
@@ -120,9 +120,9 @@ function Breath(props) {
       
       // Sustain In
       if (sustainIn > 0 && timerCount === 1) {
-        retainAudio.play();
         setSustainIn(sustainIn - 0.1);
         if (sustainIn > 1) {
+          retainAudio.play();
           setTimerText(Math.trunc(sustainIn - 0.01 + 1));
         } else {
           setTimerText((Math.round((sustainIn - 0.1) * 10) / 10 ).toFixed(1));
@@ -146,9 +146,9 @@ function Breath(props) {
       
       // Exhale
       if (exhale > 0 && timerCount === 2) {
-        exhaleAudio.play();
           setExhale(exhale - 0.1);
           if (exhale > 1) {
+            exhaleAudio.play();
             setTimerText(Math.trunc(exhale - 0.01 + 1));
           } else {
             setTimerText((Math.round((exhale - 0.1) * 10) / 10 ).toFixed(1));
@@ -188,9 +188,9 @@ function Breath(props) {
       
       // Sustain Out
       if (sustainOut > 0 && timerCount === 3) {
-        sustainAudio.play();
           setSustainOut(sustainOut - 0.1);
           if (sustainOut > 1) {
+            sustainAudio.play();
             setTimerText(Math.trunc(sustainOut - 0.01 + 1));
           } else {
             setTimerText((Math.round((sustainOut - 0.1) * 10) / 10 ).toFixed(1));
@@ -227,6 +227,10 @@ function Breath(props) {
           alert("Inhale and Exhale must have values greater than 0")
         }
     } else {
+      inhaleAudio.pause();
+      retainAudio.pause();
+      exhaleAudio.pause();
+      sustainAudio.pause();
       setBreathingLoop(false);
       runBreathingLoop(false);
     }

@@ -19,14 +19,15 @@ function App() {
 
   function handleLoginWindowClose() {
     if (openSignup) {
+      console.log("clicked outside login window");
       setOpenSignup(false);
       setInitialStart(true);
     }
   }
 
   return (
-    <div className="App">
-      <div className="header" onClick={ handleLoginWindowClose }>
+    <div className="App" onClick={ handleLoginWindowClose }>
+      <div className="header">
         <div className="left-info">
           <div className="menu-icon-container" onClick={() => menu ? setMenu(false) : setMenu(true)}>
             <FiMenu className="menu-icon"/>
@@ -40,7 +41,7 @@ function App() {
           <button className="button login-button" onClick={ handleLogin }>
             Login
           </button>
-          <button className="button register-button" onClick={() => setOpenSignup(true)}>
+          <button className="button register-button" onClick={ handleLogin }>
             Register
           </button>
         </div>
@@ -74,7 +75,7 @@ function App() {
               </div>
             </div>
             <div className="menu-item-container">
-              <div className="menu-item" style={menu ? {visibility: "hidden"} : {visibility: "visible", transitionDelay: "0.6s", transitionProperty: "visibility"}} onClick={() => setOpenSignup(true)}>
+              <div className="menu-item" style={menu ? {visibility: "hidden"} : {visibility: "visible", transitionDelay: "0.6s", transitionProperty: "visibility"}} onClick={ handleLogin }>
                 Login/logout
               </div>
             </div>
