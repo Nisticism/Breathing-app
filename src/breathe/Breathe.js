@@ -84,7 +84,7 @@ function Breath(props) {
       if (inhale > 0 && timerCount === 0) {
         setInhale(inhale - 0.1);
         if (inhale > 1) {
-          inhaleAudio.play();
+          // inhaleAudio.play();
           setTimerText(Math.trunc(inhale - 0.01 + 1));
         } else {
           setTimerText((Math.round((inhale - 0.1) * 10) / 10 ).toFixed(1));
@@ -95,7 +95,7 @@ function Breath(props) {
       //  Inhale reaches 0
       if (inhale < 0.01 && timerCount === 0) {
         if (sustainInSetting > 0) {
-          retainAudio.play();
+          // retainAudio.play();
           setActionText("Retain");
           setSustainIn(sustainIn - 0.1);
           if (sustainInSetting === 1) {
@@ -105,7 +105,7 @@ function Breath(props) {
           }
           setTimerCount(timerCount + 1);
         } else {
-          exhaleAudio.play();
+          // exhaleAudio.play();
           setActionText("Exhale");
           setExhale(exhale - 0.1);
           if (exhaleSetting === 1) {
@@ -122,7 +122,7 @@ function Breath(props) {
       if (sustainIn > 0 && timerCount === 1) {
         setSustainIn(sustainIn - 0.1);
         if (sustainIn > 1) {
-          retainAudio.play();
+          // retainAudio.play();
           setTimerText(Math.trunc(sustainIn - 0.01 + 1));
         } else {
           setTimerText((Math.round((sustainIn - 0.1) * 10) / 10 ).toFixed(1));
@@ -132,7 +132,7 @@ function Breath(props) {
 
       //  Sustain reaches 0
       if (sustainIn < 0.01 && timerCount === 1) {
-        exhaleAudio.play();
+        // exhaleAudio.play();
         setExhale(exhale - 0.1);
         if (exhaleSetting === 1) {
           setTimerText(0.9);
@@ -148,7 +148,7 @@ function Breath(props) {
       if (exhale > 0 && timerCount === 2) {
           setExhale(exhale - 0.1);
           if (exhale > 1) {
-            exhaleAudio.play();
+            // exhaleAudio.play();
             setTimerText(Math.trunc(exhale - 0.01 + 1));
           } else {
             setTimerText((Math.round((exhale - 0.1) * 10) / 10 ).toFixed(1));
@@ -159,7 +159,7 @@ function Breath(props) {
       // Exhale reaches 0
       if (exhale < 0.01 && timerCount === 2) {
         if (sustainOutSetting > 0) {
-          sustainAudio.play();
+          // sustainAudio.play();
           setActionText("Sustain");
           setTimerCount(timerCount + 1);
           setSustainOut(sustainOut - 0.1);
@@ -170,7 +170,7 @@ function Breath(props) {
           }
           setExhale(0);
         } else {
-          inhaleAudio.play();
+          // inhaleAudio.play();
           setActionText("Inhale");
           setTimerCount(0);
           if (inhaleSetting === 1) {
@@ -190,7 +190,7 @@ function Breath(props) {
       if (sustainOut > 0 && timerCount === 3) {
           setSustainOut(sustainOut - 0.1);
           if (sustainOut > 1) {
-            sustainAudio.play();
+            // sustainAudio.play();
             setTimerText(Math.trunc(sustainOut - 0.01 + 1));
           } else {
             setTimerText((Math.round((sustainOut - 0.1) * 10) / 10 ).toFixed(1));
@@ -200,7 +200,7 @@ function Breath(props) {
 
       // Sustain Out reaches 0
       if (sustainOut < 0.01 && timerCount === 3) {
-        inhaleAudio.play();
+        // inhaleAudio.play();
         if (sustainOutSetting === 1) {
           setTimerText(0.9);
         } else {
@@ -250,7 +250,7 @@ function Breath(props) {
     if(toggle) {
       setButtonText("STOP");
       setActionText("Inhale");
-      inhaleAudio.play();
+      // inhaleAudio.play();
       setTimerCount(0);
       console.log("running breathing loop");
     } else {
@@ -454,7 +454,7 @@ function Breath(props) {
               <button className="button preset-button" onClick={pressPranayama3}>
                 PRANAYAMA 3
               </button>
-              <button className="button preset-button" onClick={pressWimHof}>
+              <button className="button preset-button video-button" onClick={pressWimHof}>
                 WIM HOF (Video)
               </button>
             </div>

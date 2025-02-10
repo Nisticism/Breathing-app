@@ -1,6 +1,6 @@
 .breath {
-  margin-left: max(10%, 100px);
-  padding-left: 40px;
+  /* margin-left: max(10%, 100px);
+  padding-left: 40px; */
   justify-content: center;
 }
 
@@ -143,9 +143,12 @@ tr {
 }
 
 .buttons-row {
+  max-width: 500px;
   display: flex;
   justify-content: space-around;
   padding: 10px 0px 10px 0px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .preset-button {
@@ -155,9 +158,47 @@ tr {
   width: 140px;
   height: 35px;
   border-radius: 16px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .preset-button:hover {
   color: var(--dark-mode-main);
   background-color: var(--dark-mode-text);
+}
+
+.video-button {
+  background-color: var(--video-button);
+}
+
+@media (max-width: 860px) {
+  .buttons-row {
+    display: block;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 0px;
+  }
+
+  .preset-button {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+}
+
+@media (max-width: 650px) {
+  .info-container {
+    display: block;
+  }
+
+  .pie-chart {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+  }
+
+  .counters {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+  }
 }
