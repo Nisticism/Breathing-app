@@ -261,66 +261,79 @@ function Breath(props) {
   }
 
   function pressCenter() {
-    if (!breathingLoop) {
+    if (breathingLoop) {
+      toggleLoop();
+    }
     setInhaleSetting(4);
     setSustainInSetting(0);
     setExhaleSetting(4);
     setSustainOutSetting(0);
-    }
   }
 
   function pressCalm() {
-    if (!breathingLoop) {
+    if (breathingLoop) {
+      toggleLoop();
+    }
       setInhaleSetting(4);
       setSustainInSetting(0);
       setExhaleSetting(6);
       setSustainOutSetting(0);
-    }
+    
   }
   
   function pressBox() {
-    if (!breathingLoop) {
+    if (breathingLoop) {
+      toggleLoop();
+    }
       setInhaleSetting(4);
       setSustainInSetting(4);
       setExhaleSetting(4);
       setSustainOutSetting(4);
-    }
+    
   }
 
   function press478Breathing() {
-    if (!breathingLoop) {
+    if (breathingLoop) {
+      toggleLoop();
+    }
       setInhaleSetting(4);
       setSustainInSetting(7);
       setExhaleSetting(8);
       setSustainOutSetting(0);
-    }
+    
   }
 
   function pressPranayama1() {
-    if (!breathingLoop) {
+    if (breathingLoop) {
+      toggleLoop();
+    }
       setInhaleSetting(2);
       setSustainInSetting(0);
       setExhaleSetting(4);
       setSustainOutSetting(0);
-    }
+    
   }
 
   function pressPranayama2() {
-    if (!breathingLoop) {
+    if (breathingLoop) {
+      toggleLoop();
+    }
       setInhaleSetting(2);
       setSustainInSetting(4);
       setExhaleSetting(4);
       setSustainOutSetting(0);
-    }
+    
   }
 
   function pressPranayama3() {
-    if (!breathingLoop) {
+    if (breathingLoop) {
+      toggleLoop();
+    }
       setInhaleSetting(2);
       setSustainInSetting(6);
       setExhaleSetting(4);
       setSustainOutSetting(2);
-    }
+    
   }
 
   function pressWimHof() {
