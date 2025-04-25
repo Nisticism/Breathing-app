@@ -10,7 +10,8 @@
   color: white;
   display: flex;
   flex-direction: column;
-  width: max(20%, 220px);
+  width: max(20%, 200px);
+  max-width: 320px;
   height: 200px;
   padding: 20px;
   margin: 0px 30px 0px 30px;
@@ -79,7 +80,7 @@ tr {
   border-radius: 10px;
   border: 2px solid var(--dark-mode-white);
   color: var(--dark-mode-text);
-  padding: 0 20px 0 20px;
+  padding: 0px;
   font-weight: 400;
   width: 100%;
   text-align: center;
@@ -89,7 +90,7 @@ tr {
   margin-top: 20px !important;
   display: flex;
   justify-content: center;
-  width: 60%;
+  width: fit-content;
   margin: auto;
 }
 
@@ -129,8 +130,10 @@ tr {
   font-weight: 400;
   color: var(--dark-mode-white);
   width: 80%;
+  max-width: 700px;
   margin: auto;
-  margin-top: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .highlighted-text {
@@ -158,8 +161,8 @@ tr {
   width: 140px;
   height: 35px;
   border-radius: 16px;
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .preset-button:hover {
@@ -173,16 +176,16 @@ tr {
 
 @media (max-width: 860px) {
   .buttons-row {
-    display: block;
+    /* display: block; */
     margin-top: 0px;
     margin-bottom: 0px;
-    padding: 0px;
+    /* padding: 0px; */
   }
 
-  .preset-button {
+  /* .preset-button {
     margin-top: 5px;
     margin-bottom: 5px;
-  }
+  } */
 }
 
 @media (max-width: 650px) {
